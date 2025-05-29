@@ -1,0 +1,8 @@
+C:\CeramicSoft\RustPlayGround\procview\target\debug\deps\libidna-b673c5c46b27b3ef.rmeta: C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\lib.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\deprecated.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\punycode.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\uts46.rs
+
+C:\CeramicSoft\RustPlayGround\procview\target\debug\deps\idna-b673c5c46b27b3ef.d: C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\lib.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\deprecated.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\punycode.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\uts46.rs
+
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\lib.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\deprecated.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\punycode.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\idna-1.0.3\src\uts46.rs:

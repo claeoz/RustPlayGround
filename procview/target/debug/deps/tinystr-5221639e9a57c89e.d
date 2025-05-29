@@ -1,0 +1,12 @@
+C:\CeramicSoft\RustPlayGround\procview\target\debug\deps\libtinystr-5221639e9a57c89e.rmeta: C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\lib.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\macros.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\ascii.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\asciibyte.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\error.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\int_ops.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\unvalidated.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\ule.rs
+
+C:\CeramicSoft\RustPlayGround\procview\target\debug\deps\tinystr-5221639e9a57c89e.d: C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\lib.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\macros.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\ascii.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\asciibyte.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\error.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\int_ops.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\unvalidated.rs C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\ule.rs
+
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\lib.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\macros.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\ascii.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\asciibyte.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\error.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\int_ops.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\unvalidated.rs:
+C:\Users\claem\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tinystr-0.8.1\src\ule.rs:
