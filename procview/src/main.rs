@@ -1,11 +1,15 @@
 use eframe::{self, egui};
 mod models;
 use models::task::Task;
+use egui_extras::TableBuilder;
+use egui_extras::Column;
+
 
 //holds the base data like fields
 struct BaseData {
     counter: u32,
     tasks: Vec<Task>,
+    selectedPID: u32,
 }
 
 //inititializes the BaseData
@@ -14,6 +18,7 @@ impl Default for BaseData {
         Self 
         { 
             counter: 0,
+            selectedPID: 0,
             tasks: vec![
                 Task {
                     Name: "Delete Me".to_string(),
@@ -48,31 +53,50 @@ impl eframe::App for BaseData {
                 ui.label("one");
                 ui.label("two");
             });
-            ui.group(|ui| {
-                ui.horizontal(|ui| {
-                    ui.label("Name");
-                    ui.label("PID");
-                    ui.label("CPU Percentage");
-                    ui.label("Ram Percentage");
-                    ui.label("Ram Bytes");
-                    ui.label("Storage Percentage");
-                    ui.label("Storage Bytes");
-                    ui.label("Network Percentage");
-                    ui.label("Network Bytes");
-                });
-                for task in &self.tasks {
-                    ui.horizontal(|ui| {
-                        ui.label(&task.Name);
-                        ui.label(task.pid.to_string());
-                        ui.label(format!("{:.1}", task.CPUPercentage));
-                        ui.label(format!("{:.1}", task.RamPercentage));
-                        ui.label(format!("{}", task.RamBytes));
-                        ui.label(format!("{:.1}", task.StorageUsagePercentage));
-                        ui.label(format!("{}", task.StorageUsageBytes));
-                        ui.label(format!("{:.1}", task.NetworkPercentage));
-                        ui.label(format!("{}", task.NetworkBytes));
-                    });
-                }
+                let table = TableBuilder::new(ui)
+                    .striped(true)
+                    .cell_layout(egui::Layout::left_to_right(egui::Align::Center))
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .resizable(true);
+
+                table
+                    .header(20.0, |mut header| {
+                        header.col(|ui| { ui.label("Name"); });
+                        header.col(|ui| { ui.label("PID"); });
+                        header.col(|ui| { ui.label("CPU %"); });
+                        header.col(|ui| { ui.label("RAM %"); });
+                        header.col(|ui| { ui.label("RAM Bytes"); });
+                        header.col(|ui| { ui.label("Storage %"); });
+                        header.col(|ui| { ui.label("Storage Bytes"); });
+                        header.col(|ui| { ui.label("Network %"); });
+                        header.col(|ui| { ui.label("Network Bytes"); });
+                    })
+                    .body(|mut body| {
+                        for task in &self.tasks {
+                            body.row(18.0, |mut row| {
+                                row.col(|ui| {
+                                    if ui.button(&task.Name).clicked() {
+                                    self.counter += 1;
+                                }
+                            });
+                                row.col(|ui| { ui.label(task.pid.to_string()); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.CPUPercentage)); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.RamPercentage)); });
+                                row.col(|ui| { ui.label(format!("{}", task.RamBytes)); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.StorageUsagePercentage)); });
+                                row.col(|ui| { ui.label(format!("{}", task.StorageUsageBytes)); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.NetworkPercentage)); });
+                                row.col(|ui| { ui.label(format!("{}", task.NetworkBytes)); });
+                            });
+                        }
             });
 
         });
