@@ -1,8 +1,10 @@
 use eframe::{self, egui};
+use models::{self, Task}
 
 //holds the base data like fields
 struct BaseData {
-    counter: u32
+    counter: u32,
+    tasks: Vec<Task>,
 }
 
 //inititializes the BaseData
@@ -28,6 +30,19 @@ impl eframe::App for BaseData {
             ui.vertical(|ui| {
                 ui.label("one");
                 ui.label("two");
+            });
+            ui.group(|ui| {
+                ui.horizontal(|ui| {
+                    ui.label("Name");
+                    ui.label("PID");
+                    ui.label("CPU Percentage");
+                    ui.label("Ram Percentage");
+                    ui.label("RamB ytes");
+                    ui.label("Storage Percentage");
+                    ui.label("Storage Bytes");
+                    ui.label("Network Percentage");
+                    ui.label("Network Bytes");
+                });
             });
         });
     }
