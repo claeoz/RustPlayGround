@@ -14,7 +14,19 @@ impl Default for BaseData {
         Self 
         { 
             counter: 0,
-            tasks: Vec::new(),
+            tasks: vec![
+                Task {
+                    Name: "Delete Me".to_string(),
+                    pid: 0,
+                    CPUPercentage: 1.1,
+                    RamPercentage: 1.1,
+                    RamBytes: 12,
+                    StorageUsagePercentage: 1.1,
+                    StorageUsageBytes: 12,
+                    NetworkPercentage: 1.1,
+                    NetworkBytes: 12
+                }
+            ]
         }
     }
 }
@@ -48,7 +60,21 @@ impl eframe::App for BaseData {
                     ui.label("Network Percentage");
                     ui.label("Network Bytes");
                 });
+                for task in &self.tasks {
+                    ui.horizontal(|ui| {
+                        ui.label(&task.Name);
+                        ui.label(task.pid.to_string());
+                        ui.label(format!("{:.1}", task.CPUPercentage));
+                        ui.label(format!("{:.1}", task.RamPercentage));
+                        ui.label(format!("{}", task.RamBytes));
+                        ui.label(format!("{:.1}", task.StorageUsagePercentage));
+                        ui.label(format!("{}", task.StorageUsageBytes));
+                        ui.label(format!("{:.1}", task.NetworkPercentage));
+                        ui.label(format!("{}", task.NetworkBytes));
+                    });
+                }
             });
+
         });
     }
 }
