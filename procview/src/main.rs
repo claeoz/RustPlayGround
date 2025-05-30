@@ -16,11 +16,19 @@ impl Default for BaseData {
 impl eframe::App for BaseData {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
-            ui.label(format!("Count: {}", self.counter));
+            ui.heading("Rust Bucket");
 
-            if ui.button("Increment").clicked() {
-                self.counter += 1;
-            }
+            ui.group(|ui| {
+                ui.label(format!("Count: {}", self.counter));
+    
+                if ui.button("Increment").clicked() {
+                    self.counter += 1;
+                };
+            });
+            ui.vertical(|ui| {
+                ui.label("one");
+                ui.label("two");
+            });
         });
     }
 }
