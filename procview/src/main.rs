@@ -1,5 +1,6 @@
 use eframe::{self, egui};
-use models::{self, Task}
+mod models;
+use models::task::Task;
 
 //holds the base data like fields
 struct BaseData {
@@ -10,7 +11,11 @@ struct BaseData {
 //inititializes the BaseData
 impl Default for BaseData {
     fn default() -> Self {
-        Self { counter: 0 }
+        Self 
+        { 
+            counter: 0,
+            tasks: Vec::new(),
+        }
     }
 }
 
@@ -37,7 +42,7 @@ impl eframe::App for BaseData {
                     ui.label("PID");
                     ui.label("CPU Percentage");
                     ui.label("Ram Percentage");
-                    ui.label("RamB ytes");
+                    ui.label("Ram Bytes");
                     ui.label("Storage Percentage");
                     ui.label("Storage Bytes");
                     ui.label("Network Percentage");
