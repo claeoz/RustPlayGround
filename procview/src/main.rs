@@ -9,7 +9,7 @@ use egui_extras::Column;
 struct BaseData {
     counter: u32,
     tasks: Vec<Task>,
-    selectedPID: u32,
+    selectedTask: Option<Task>,
 }
 
 //inititializes the BaseData
@@ -18,7 +18,6 @@ impl Default for BaseData {
         Self 
         { 
             counter: 0,
-            selectedPID: 0,
             tasks: vec![
                 Task {
                     Name: "Delete Me".to_string(),
@@ -31,7 +30,8 @@ impl Default for BaseData {
                     NetworkPercentage: 1.1,
                     NetworkBytes: 12
                 }
-            ]
+                ],
+            selectedTask: None,
         }
     }
 }
@@ -41,8 +41,10 @@ impl eframe::App for BaseData {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Rust Bucket");
+            if let Some(task) = &self.selectedTask {
+                ui.label(format!("Selected Process: {} : {}", task.Name, task.pid));
+            }
 
-            ui.label("curent PID");
             let table = TableBuilder::new(ui)
                 .striped(true)
                 .cell_layout(egui::Layout::left_to_right(egui::Align::Center))
@@ -74,7 +76,7 @@ impl eframe::App for BaseData {
                         body.row(18.0, |mut row| {
                             row.col(|ui| {
                                 if ui.button(&task.Name).clicked() {
-                                self.counter += 1;
+                                self.selectedTask = Some(task.clone());
                             }
                         });
                             row.col(|ui| { ui.label(task.pid.to_string()); });
