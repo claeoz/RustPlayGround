@@ -9,7 +9,6 @@ use sysinfo::System;
 struct BaseData 
 {
     system: System,
-    counter: u32,
     tasks: Vec<Task>,
     selectedTask: Option<Task>,
 }
@@ -22,7 +21,6 @@ impl Default for BaseData
         let mut data = Self 
         {
             system: System::new_all(),
-            counter: 0,
             tasks: vec![],
             selectedTask: None,
         };
