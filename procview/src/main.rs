@@ -3,35 +3,57 @@ mod models;
 use models::task::Task;
 use egui_extras::TableBuilder;
 use egui_extras::Column;
-
+use sysinfo::System;
 
 //holds the base data like fields
-struct BaseData {
+struct BaseData 
+{
+    system: System,
     counter: u32,
     tasks: Vec<Task>,
     selectedTask: Option<Task>,
 }
 
 //inititializes the BaseData
-impl Default for BaseData {
-    fn default() -> Self {
-        Self 
-        { 
+impl Default for BaseData 
+{
+    fn default() -> Self 
+    {
+        let mut data = Self 
+        {
+            system: System::new_all(),
             counter: 0,
-            tasks: vec![
-                Task {
-                    Name: "Delete Me".to_string(),
-                    pid: 0,
-                    CPUPercentage: 1.1,
-                    RamPercentage: 1.1,
-                    RamBytes: 12,
-                    StorageUsagePercentage: 1.1,
-                    StorageUsageBytes: 12,
-                    NetworkPercentage: 1.1,
-                    NetworkBytes: 12
-                }
-                ],
+            tasks: vec![],
             selectedTask: None,
+        };
+        data.PopulateList();
+
+        data
+    }
+}
+impl BaseData 
+{
+    fn PopulateList(&mut self)
+    {
+        self.system.refresh_all();
+
+        self.tasks.clear();
+
+        for (pid, process) in self.system.processes()
+        {
+            self.tasks.push(
+            Task
+            {
+                Name: process.name().to_string(),
+                pid: pid.as_u32(),
+                CPUPercentage: process.cpu_usage(),
+                RamPercentage: 0.0,  // You can calculate this if you want
+                RamBytes: process.memory() * 1024,  // convert KB to bytes
+                StorageUsagePercentage: 0.0,  // placeholder for now
+                StorageUsageBytes: 0,         // placeholder
+                NetworkPercentage: 0.0,       // placeholder
+                NetworkBytes: 0,              // placeholder
+            });
         }
     }
 }
@@ -86,12 +108,12 @@ impl eframe::App for BaseData {
                                 }
                             });
                                 row.col(|ui| { ui.label(task.pid.to_string()); });
-                                row.col(|ui| { ui.label(format!("{:.1}", task.CPUPercentage)); });
-                                row.col(|ui| { ui.label(format!("{:.1}", task.RamPercentage)); });
+                                row.col(|ui| { ui.label(format!("{:.1}%", task.CPUPercentage)); });
+                                row.col(|ui| { ui.label(format!("{:.1}%", task.RamPercentage)); });
                                 row.col(|ui| { ui.label(format!("{}", task.RamBytes)); });
-                                row.col(|ui| { ui.label(format!("{:.1}", task.StorageUsagePercentage)); });
+                                row.col(|ui| { ui.label(format!("{:.1}%", task.StorageUsagePercentage)); });
                                 row.col(|ui| { ui.label(format!("{}", task.StorageUsageBytes)); });
-                                row.col(|ui| { ui.label(format!("{:.1}", task.NetworkPercentage)); });
+                                row.col(|ui| { ui.label(format!("{:.1}%", task.NetworkPercentage)); });
                                 row.col(|ui| { ui.label(format!("{}", task.NetworkBytes)); });
                             });
                         }
@@ -102,7 +124,8 @@ impl eframe::App for BaseData {
     }
 }
 //this is the main function
-fn main() -> Result<(), eframe::Error> {
+fn main() -> Result<(), eframe::Error> 
+    {
 
     let mut options = eframe::NativeOptions::default();
 
@@ -113,5 +136,5 @@ fn main() -> Result<(), eframe::Error> {
         "Rust Bucket", 
         options, 
         Box::new(|_cc| Box::new(BaseData::default())),
-    )
-}
+        )
+    }
