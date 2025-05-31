@@ -41,54 +41,61 @@ impl eframe::App for BaseData {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Rust Bucket");
-            if let Some(task) = &self.selectedTask {
+            if let Some(task) = &self.selectedTask 
+            {
                 ui.label(format!("Selected Process: {} : {}", task.Name, task.pid));
             }
+            else
+            {
+                ui.label("Selected Process:");
+            }
+            ui.group(|ui| {
 
-            let table = TableBuilder::new(ui)
-                .striped(true)
-                .cell_layout(egui::Layout::left_to_right(egui::Align::Center))
-                .column(Column::auto())
-                .column(Column::auto())
-                .column(Column::auto())
-                .column(Column::auto())
-                .column(Column::auto())
-                .column(Column::auto())
-                .column(Column::auto())
-                .column(Column::auto())
-                .column(Column::auto())
-                .resizable(true);
-
-            table
-                .header(20.0, |mut header| {
-                    header.col(|ui| { ui.label("Name"); });
-                    header.col(|ui| { ui.label("PID"); });
-                    header.col(|ui| { ui.label("CPU %"); });
-                    header.col(|ui| { ui.label("RAM %"); });
-                    header.col(|ui| { ui.label("RAM Bytes"); });
-                    header.col(|ui| { ui.label("Storage %"); });
-                    header.col(|ui| { ui.label("Storage Bytes"); });
-                    header.col(|ui| { ui.label("Network %"); });
-                    header.col(|ui| { ui.label("Network Bytes"); });
-                })
-                .body(|mut body| {
-                    for task in &self.tasks {
-                        body.row(18.0, |mut row| {
-                            row.col(|ui| {
-                                if ui.button(&task.Name).clicked() {
-                                self.selectedTask = Some(task.clone());
-                            }
-                        });
-                            row.col(|ui| { ui.label(task.pid.to_string()); });
-                            row.col(|ui| { ui.label(format!("{:.1}", task.CPUPercentage)); });
-                            row.col(|ui| { ui.label(format!("{:.1}", task.RamPercentage)); });
-                            row.col(|ui| { ui.label(format!("{}", task.RamBytes)); });
-                            row.col(|ui| { ui.label(format!("{:.1}", task.StorageUsagePercentage)); });
-                            row.col(|ui| { ui.label(format!("{}", task.StorageUsageBytes)); });
-                            row.col(|ui| { ui.label(format!("{:.1}", task.NetworkPercentage)); });
-                            row.col(|ui| { ui.label(format!("{}", task.NetworkBytes)); });
-                        });
-                    }
+                let table = TableBuilder::new(ui)
+                    .striped(true)
+                    .cell_layout(egui::Layout::left_to_right(egui::Align::Center))
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .column(Column::auto())
+                    .resizable(true);
+    
+                table
+                    .header(20.0, |mut header| {
+                        header.col(|ui| { ui.label("Name"); });
+                        header.col(|ui| { ui.label("PID"); });
+                        header.col(|ui| { ui.label("CPU %"); });
+                        header.col(|ui| { ui.label("RAM %"); });
+                        header.col(|ui| { ui.label("RAM Bytes"); });
+                        header.col(|ui| { ui.label("Storage %"); });
+                        header.col(|ui| { ui.label("Storage Bytes"); });
+                        header.col(|ui| { ui.label("Network %"); });
+                        header.col(|ui| { ui.label("Network Bytes"); });
+                    })
+                    .body(|mut body| {
+                        for task in &self.tasks {
+                            body.row(18.0, |mut row| {
+                                row.col(|ui| {
+                                    if ui.button(&task.Name).clicked() {
+                                    self.selectedTask = Some(task.clone());
+                                }
+                            });
+                                row.col(|ui| { ui.label(task.pid.to_string()); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.CPUPercentage)); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.RamPercentage)); });
+                                row.col(|ui| { ui.label(format!("{}", task.RamBytes)); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.StorageUsagePercentage)); });
+                                row.col(|ui| { ui.label(format!("{}", task.StorageUsageBytes)); });
+                                row.col(|ui| { ui.label(format!("{:.1}", task.NetworkPercentage)); });
+                                row.col(|ui| { ui.label(format!("{}", task.NetworkBytes)); });
+                            });
+                        }
+                });
             });
 
         });
