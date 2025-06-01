@@ -11,6 +11,7 @@ struct BaseData
     system: System,
     tasks: Vec<Task>,
     selectedTask: Option<Task>,
+    live: bool,
 }
 
 //inititializes the BaseData
@@ -23,6 +24,7 @@ impl Default for BaseData
             system: System::new_all(),
             tasks: vec![],
             selectedTask: None,
+            live: false,
         };
         data.PopulateList();
 
@@ -59,16 +61,41 @@ impl BaseData
 //definies the gui
 impl eframe::App for BaseData {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+
+        if (self.live == true)
+        {
+            self.PopulateList();
+        }
+
         egui::CentralPanel::default().show(ctx, |ui| {
+            //header
             ui.heading("Rust Bucket");
-            if let Some(task) = &self.selectedTask 
+
+            ui.group(|ui|
             {
-                ui.label(format!("Selected Process: {} : {}", task.Name, task.pid));
-            }
-            else
-            {
-                ui.label("Selected Process:");
-            }
+
+                ui.horizontal(|ui| 
+                    {
+                        ui.checkbox(&mut self.live, "Live");
+                        if ui.button("Refresh").clicked() 
+                        {
+                            self.PopulateList();
+                        }
+    
+                    });
+    
+                //selected task display
+                if let Some(task) = &self.selectedTask 
+                {
+                    ui.label(format!("Selected Process: {} : {}", task.Name, task.pid));
+                }
+                else
+                {
+                    ui.label("Selected Process:");
+                }
+            });
+
+            //task table
             ui.group(|ui| {
 
                 let table = TableBuilder::new(ui)
