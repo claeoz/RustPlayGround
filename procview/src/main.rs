@@ -62,7 +62,7 @@ impl BaseData
 impl eframe::App for BaseData {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
 
-        if (self.live == true)
+        if self.live == true
         {
             self.PopulateList();
         }
