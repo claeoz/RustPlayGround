@@ -1,5 +1,6 @@
 use eframe::{self, egui};
 mod models;
+use models::computer::Computer;
 use models::task::Task;
 use egui_extras::TableBuilder;
 use egui_extras::Column;
@@ -12,6 +13,7 @@ struct BaseData
     tasks: Vec<Task>,
     selectedTask: Option<Task>,
     live: bool,
+    computer: Computer,
 }
 
 //inititializes the BaseData
@@ -25,6 +27,7 @@ impl Default for BaseData
             tasks: vec![],
             selectedTask: None,
             live: false,
+            computer: Computer::new(),
         };
         data.PopulateList();
 

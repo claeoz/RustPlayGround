@@ -3,26 +3,54 @@
 pub struct Computer
 {
 	//os
-	OS: string,
-	OSVersion: string,
-	OSKernelVersion: string,
+	pub OS: String,
+	pub OSVersion: String,
+	pub OSKernelVersion: String,
 
 	//cpu
-	CPUName: string,
-	CPUCores: u8,
-	CPUThreads: u8,
-	CPUUsage: f32,
+	pub CPUName: String,
+	pub CPUCores: u8,
+	pub CPUThreads: u8,
+	pub CPUUsage: f32,
 
 	//ram
-	RAMTotal: u64,
-	RamUsedPercent: f32,
-	RamUsedBytes: u64,
+	pub RAMTotal: u64,
+	pub RamUsedPercent: f32,
+	pub RamUsedBytes: u64,
 
 	//gpu
-	GPUName: string,
-	GPUDriverVersion: string,
-	VRAM: u64,
-	Memory: u64,
-	GPUUsedPercent: f32,
-	GPUUsedByte: u64,
+	pub GPUName: String,
+	pub GPUDriverVersion: String,
+	pub VRAM: u64,
+	pub GPUUsedPercent: f32,
+	pub GPUUsedByte: u64,
+
+	//Memory
+	pub Memory: u64,
+}
+
+impl Computer
+{
+	pub fn new() -> Self
+	{
+		Self
+		{
+			OS: "crappy os".to_string(),
+			OSKernelVersion: "v1.1".to_string(),
+			OSVersion: "1.1.1".to_string(),
+			CPUName: "spymaster 69".to_string(),
+			CPUCores: 4,
+			CPUThreads: 4,
+			CPUUsage: 68.0,
+			RAMTotal: 56,
+			RamUsedPercent: 32.0,
+			RamUsedBytes: 12,
+			GPUName: "overpriced crypto miner".to_string(),
+			GPUDriverVersion: "v1.2.3".to_string(),
+			VRAM: 34,
+			GPUUsedPercent: 12.0,
+			GPUUsedByte: 56,
+			Memory: 58
+		}
+	}
 }
